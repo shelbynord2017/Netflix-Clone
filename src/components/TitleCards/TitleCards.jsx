@@ -24,14 +24,28 @@ const TitleCards = ({title, category}) => {
   }
 
   useEffect(() => {
-
-    fetch('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1', options)
+  fetch(`https://api.themoviedb.org/3/movie/${category?category:"now_playing"}?language=en-US&page=1`, options)
     .then(res => res.json())
-    .then(res => setApiData(response.results))
-    .catch(err => console.error(err));
+    .then(data => {
+      if (data.results) {
+        setApiData(data.results);
+      }
+    })
+    .catch(err => console.error("API Fetch Error:", err));
 
-    cardsRef.current.addEventListener('wheel', handleWheel);
-  }, [])
+  // Keep a local reference for the cleanup function
+  const currentCardsRef = cardsRef.current;
+  
+  if (currentCardsRef) {
+    currentCardsRef.addEventListener('wheel', handleWheel);
+  }
+  // Cleanup listener on unmount
+  return () => {
+    if (currentCardsRef) {
+      currentCardsRef.removeEventListener('wheel', handleWheel);
+    }
+  };
+}, []); // Empty dependency array is fine here if options/handleWheel don't change
 
 
   return (
