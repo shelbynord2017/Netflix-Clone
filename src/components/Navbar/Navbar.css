@@ -76,3 +76,6 @@
     display: block;
 }
 
+.nav__dark {
+    background: #141414;
+}
