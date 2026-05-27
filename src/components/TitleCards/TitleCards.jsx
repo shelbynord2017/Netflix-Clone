@@ -1,10 +1,50 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './TitleCards.css'
+import cards_data from '../../assets/cards/Cards_data'
 
-const TitleCards = () => {
+
+
+const TitleCards = ({title, category}) => {
+
+  const [apiData, setApiData] = useState([]);
+  const cardsRef = useRef();
+
+  const options = {
+  method: 'GET',
+  headers: {
+    accept: 'application/json',
+    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNGQ4MmE1YTgzMjQzNWFlNzk5ZmI4MTlmNjQxZDIxZCIsIm5iZiI6MTc3OTg0NjgxOS4xNjQsInN1YiI6IjZhMTY0ZWEzZDNkMWI4NmJiNGQ0N2I5MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.zlEewSIp3mSpFjg00t0dpcU31uJUL9oO9GB6fP0Td4s'
+  }
+  };
+
+
+  const handleWheel = (event) => {
+    event.preventDefault();
+    cardsRef.current.scrollLeft += event.deltaY*2;
+  }
+
+  useEffect(() => {
+
+    fetch('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1', options)
+    .then(res => res.json())
+    .then(res => setApiData(response.results))
+    .catch(err => console.error(err));
+
+    cardsRef.current.addEventListener('wheel', handleWheel);
+  }, [])
+
+
   return (
     <div className="titlecards">
-
+      <h2>{title?title:"Popular on Netflix"}</h2>
+      <div className="card__list" ref={cardsRef}>
+        {apiData.map((card, index) => {
+          return <div className="card" key={index}>
+            <img src={`https://image.tmdb.org/t/p/w500`+card.backdrop_path} alt="" />
+            <p>{card.original_title}</p>
+          </div>
+        })}
+      </div>
     </div>
   )
 }

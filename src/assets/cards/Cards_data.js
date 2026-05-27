@@ -70,6 +70,18 @@ const cards_data = [
         image:card_img14,
         name:"All of Us Are Dead"
     },
+    {
+        image:card_img14,
+        name:"All of Us Are Dead"
+    },
+    {
+        image:card_img14,
+        name:"All of Us Are Dead"
+    },
+    {
+        image:card_img14,
+        name:"All of Us Are Dead"
+    },
 ]
 
 export default cards_data;
