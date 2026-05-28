@@ -8,7 +8,7 @@
     -weblit-mask-image: linear-gradient(to right, transparent, black 75%);
 }
 
-.hero_caption {
+.hero__caption {
     position: absolute;
     width: 100%;
     padding-left: 6%;
@@ -21,7 +21,7 @@
     margin-bottom: 30px;
 }
 
-.hero_caption p {
+.hero__caption p {
     max-width: 700px;
     font-size: 17px;
     margin-bottom: 20px;
@@ -66,4 +66,45 @@
 
 .more__cards {
     padding-left: 6%;
+}
+
+@media (max-width: 1024px) {
+    .hero__caption .titlecards{
+        display: none;
+    }
+    .hero__btns {
+        margin-bottom: 30px;
+    }
+}
+@media (max-width: 800px){
+    .hero__caption {
+        padding-left: 4%;
+    }
+    .caption__img {
+        margin-bottom: 10px;
+        width: 40%;
+    }
+    .hero__caption p{
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+    .hero__btns .btn img{
+        width: 20px;
+    }
+    .more__cards {
+        padding: 4%;
+    }
+}
+@media (max-width: 500px) {
+    .caption__img {
+        display: none;
+    }
+    .hero__btns .btn img{
+        width: 15px;
+    }
+    .hero__btns .btn {
+        padding: 4px 10px;
+        gap: 5px;
+        font-size: 10px;
+    }
 }

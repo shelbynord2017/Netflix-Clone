@@ -14,7 +14,7 @@ import Footer from '../../components/Footer/Footer'
         <Navbar/>
         <div className="hero">
             <img src={hero_banner} alt="" className='banner_img'/>
-            <div className="hero_caption">
+            <div className="hero__caption">
                 <img src={hero_title} alt="" className='caption__img'/>
                 <p>Discovering his ties to a secret ancient order, 
                     a young man living in modern Istanbul embarks on a quest 
